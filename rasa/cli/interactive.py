@@ -8,13 +8,16 @@ from rasa import data, model
 
 
 # noinspection PyProtectedMember
-def add_subparser(subparsers: argparse._SubParsersAction,
-                  parents: List[argparse.ArgumentParser]):
+def add_subparser(
+    subparsers: argparse._SubParsersAction,
+    parents: List[argparse.ArgumentParser],
+):
     interactive_parser = subparsers.add_parser(
         "interactive",
         conflict_handler="resolve",
         parents=parents,
-        help="Teach the bot with interactive learning")
+        help="Teach the bot with interactive learning",
+    )
 
     run.add_run_arguments(interactive_parser)
     train.add_general_arguments(interactive_parser)
@@ -30,7 +33,8 @@ def _add_interactive_arguments(parser: argparse.ArgumentParser):
         default=False,
         action="store_true",
         help="Disables plotting the visualization during "
-             "interactive learning")
+        "interactive learning",
+    )
 
 
 def interactive(args: argparse.Namespace):

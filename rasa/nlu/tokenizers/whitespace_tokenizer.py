@@ -11,8 +11,12 @@ class WhitespaceTokenizer(Tokenizer, Component):
 
     provides = ["tokens"]
 
-    def train(self, training_data: TrainingData, config: RasaNLUModelConfig,
-              **kwargs: Any) -> None:
+    def train(
+        self,
+        training_data: TrainingData,
+        config: RasaNLUModelConfig,
+        **kwargs: Any
+    ) -> None:
 
         for example in training_data.training_examples:
             example.set("tokens", self.tokenize(example.text))
@@ -25,7 +29,7 @@ class WhitespaceTokenizer(Tokenizer, Component):
 
         # there is space or end of string after punctuation
         # because we do not want to replace 10.000 with 10 000
-        words = re.sub(r'[.,!?]+(\s|$)', ' ', text).split()
+        words = re.sub(r"[.,!?]+(\s|$)", " ", text).split()
 
         running_offset = 0
         tokens = []
