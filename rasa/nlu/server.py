@@ -385,16 +385,10 @@ def main(args):
         args.loglevel,
         args.write,
         args.num_threads,
-        get_token(cmdline_args.token),
+        get_token(args.token),
         args.cors,
         default_config_path=args.config
     )
 
     logger.info('Started http server on port %s' % args.port)
     rasa.app.run('0.0.0.0', args.port)
-
-
-if __name__ == '__main__':
-    # Running as standalone python application
-    cmdline_args = create_argument_parser().parse_args()
-    main(cmdline_args)
